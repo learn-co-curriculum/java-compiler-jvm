@@ -2,31 +2,104 @@
 
 ## Learning Goals
 
-- Learning Goal 1
-- Learning Goal 2
+- Explain compilation process
+- Explain JVM
 
-## Introduction
+## Compilation
 
-A 1-2 sentence summary of what will be covered.
+In the previous unit, we learned how to run a sample Java program. To run a Java
+program it takes two steps:
 
-## Topic 1
+1. Compile the program
+2. Run the program
 
-Discuss the topic of the reading. Break into sections and sub-sections as
-appropriate to help with the reader's orientation with the material and future
-referencing.
+If we go back to our chef example and consider our `makeBreakfast()` set of
+instructions, you can imagine that chefs and cooks have their own shorthand to
+communicate with each other. So they might have terms like **whip** that have
+specific meaning to that profession. If you wanted to make the `makeBreakfast()`
+instructions understandable by someone who is not a professional chef, you might
+need to translate those specialized terms into more basic instructions.
 
-## Topic 2
+That is essentially what the compiler does. It takes language-specific (in our
+case, Java) instructions and turns them into something that your computer can
+execute.
 
-Discuss the topic of the reading. Break into sections and sub-sections as
-appropriate to help with the reader's orientation with the material and future
-referencing.
+For a lot of programming languages, the output of the compiler is something that
+your computer can run directly.
+
+## JVM
+
+Java, however, is an **interpreted** language, which means that instead of
+compiling code to be run on a specific machine, the Java compiler compiles code
+to be run by the **Java Virtual Machine**. The JVM then interprets that code and
+runs it on a specific machine.
+
+The discussion of the pros and cons of this approach is outside the scope of this
+unit, but we should note that Java's main goal with the JVM is to make Java's
+compiled code (called **Java bytecode**) executable on any platform that
+supports the JVM without the need for the original source code to be re-compiled.
+
+Let's summarize the lifecycle of our instructions:
+
+1. We write our program instructions in a programming language called Java (using
+   an Integrated Development Environment, or IDE for short like IntelliJ).
+   This set of instructions is referred to as our **source code** and is
+   "human-readable", which means you and me, with some training, can read it and
+   understand its intent.
+2. We then **compile** our **source code** (using the `javac` command) in order
+   to turn it into something that the **Java Virtual Machine** (JVM) can execute.
+   This is called **Java bytecode** and is not intended to be "human-readable".
+3. Finally, we execute the compiled code using the `java` command, which runs
+   our instructions and displays the corresponding output
+
+Here is a table view of this summary
+
+|                | Step 1      | Step 2                  | Step 3                        |
+|----------------|-------------|-------------------------|-------------------------------|
+| Tool           | IntelliJ    | Java compiler (`javac`) | Java Virtual Machine (`java`) |
+| File generated | Source code | Bytecode                | Program output                |
+
+As we saw when running our "Hello World" program in the last lesson, IntelliJ
+hides these steps. Let's take a look at how we can run a Java program from the
+command line to further our understanding.
+
+Consider the following sample program:
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
+    }
+}
+```
+
+In a terminal window, we can navigate to the directory where this file is at,
+and compile it using the JDK command `javac <filename>`:
+
+```bash
+javac Main.java
+```
+
+When it is fully compiled, it will create a `Main.class` file with the
+Java bytecode. We can run the program now using the JDK command
+`java <classname>`:
+
+```bash
+java Main
+```
+
+In the terminal window, we should see the following output:
+
+```text
+Hello World!
+```
+
+Again, these steps are the same as what would happen if we clicked the green
+play button in the upper-right hand corner of IntelliJ:
+
+![IntelliJ Run](https://curriculum-content.s3.amazonaws.com/java-mod-1/your-first-java-program/intellij-play.png)
 
 ## Conclusion
 
-A short one or two paragraph summary of the contents of the lessons, recapping
-the learning goals.
-
-## Resources
-
-- [Resource Link 1](example.com)
-- [Resource Link 2](example.com)
+You should now understand how a Java program is compiled and run by your
+machine.
